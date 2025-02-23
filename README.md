@@ -24,7 +24,7 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local.
 
 ```bash
 git clone https://github.com/Juangomez06/django_subir_archivo.git
-cd django_subir_archivo_txt
+cd django_subir_archivo
 ```
 
 ### 2️⃣ Crear y Activar un Entorno Virtual  

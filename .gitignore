@@ -61,4 +61,4 @@ media/
 staticfiles/
 
 # Archivos de migraciones 
-subir_archivo/migrations/
+#subir_archivo/migrations/
