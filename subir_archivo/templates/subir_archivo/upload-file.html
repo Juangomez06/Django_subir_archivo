@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Archivo TXT</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Subir y Validar Archivo TXT</h1>
+        <form action="{% url 'subir_archivo:uploadFile' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Subir y Validar</button>
+        </form>
+
+        {% if validation_results %}
+            <div class="messages">
+                {% for result in validation_results %}
+                    {% if "Error" in result %}
+                        <p class="error">{{ result }}</p>
+                    {% else %}
+                        <p class="success">{{ result }}</p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="uploaded-files">
+            <h2>Archivos Subidos</h2>
+            {% if documents %}
+                <ul>
+                    {% for document in documents %}
+                        <li>
+                            <a href="{{ document.uploadedFile.url }}" target="_blank">{{ document.uploadedFile.name }}</a>
+                            <span class="file-date">(Subido el {{ document.dateTimeOfUpload|date:"d/m/Y H:i A" }})</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No hay archivos subidos aún.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
